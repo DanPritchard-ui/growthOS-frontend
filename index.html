@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -501,8 +502,9 @@ footer{padding:2.5rem 2rem;border-top:1px solid var(--border);display:flex;align
       <input type="email" class="capture-input" placeholder="your@email.com" id="emailInput"/>
       <button class="capture-btn" onclick="handleSignup()">Get started free</button>
     </div>
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAAC9fyBJXL9-Cz9k3" data-theme="dark" style="margin:1rem auto;display:flex;justify-content:center;"></div>
     <div class="capture-success" id="successMsg">✓ You're on the list — check your inbox shortly.</div>
-    <p class="capture-note">Free forever. No credit card. Unsubscribe any time.</p>
+    <p class="capture-note">By signing up you agree to receive weekly emails from RankActions. Unsubscribe any time. Free forever. No credit card.</p>
   </div>
 </section>
 
@@ -535,18 +537,31 @@ document.querySelectorAll('.faq-q').forEach(q => {
   });
 });
 
-// ── Email signup ──
+// ── Email signup with Turnstile verification ──
 function handleSignup() {
   const email = document.getElementById('emailInput').value;
+
+  // Basic email validation
   if (!email || !email.includes('@')) {
     document.getElementById('emailInput').style.borderColor = '#f03e5f';
     return;
   }
-  // Store locally for now — replace with your email service later
+
+  // Check Turnstile has been completed
+  const turnstileToken = document.querySelector('[name="cf-turnstile-response"]')?.value;
+  if (!turnstileToken) {
+    alert('Please complete the security check before signing up.');
+    return;
+  }
+
+  // Store signup locally — swap this for Mailchimp/Brevo API call later
   const signups = JSON.parse(localStorage.getItem('ra_signups') || '[]');
-  signups.push({ email, date: new Date().toISOString() });
+  signups.push({ email, date: new Date().toISOString(), verified: true });
   localStorage.setItem('ra_signups', JSON.stringify(signups));
+
+  // Show success
   document.querySelector('.capture-form').style.display = 'none';
+  document.querySelector('.cf-turnstile').style.display = 'none';
   document.getElementById('successMsg').style.display = 'block';
 }
 
