@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 // ─────────────────────────────────────────────────────────────
 // ⚙️  CONFIG — paste your Worker URL here after deploying it
 // ─────────────────────────────────────────────────────────────
-const WORKER_URL = "https://growthros-api.danpritchard.workers.dev";
+const WORKER_URL = "https://growthos-api.growthos.workers.dev";
+
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -21,7 +22,7 @@ const CSS = `
 .ob{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;background:radial-gradient(ellipse 900px 400px at 50% 0%,#0c1530 0%,var(--bg) 65%);}
 .ob-logo{font-size:1.4rem;font-weight:800;letter-spacing:-.04em;margin-bottom:2.5rem;}
 .ob-logo em{color:var(--green);font-style:normal;}
-.ob-card{width:100%;max-width:460px;background:var(--s1);border:1px solid var(--border);border-radius:16px;padding:2.5rem;}
+.ob-card{width:100%;max-width:460px;background:#131729;border:1px solid #2a3560;border-radius:16px;padding:2.5rem;box-shadow:0 0 0 1px rgba(77,123,255,.08),0 8px 40px rgba(0,0,0,.5),0 0 80px rgba(77,123,255,.06);}
 .ob-step-label{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--text3);margin-bottom:1.5rem;}
 .ob-h{font-size:1.55rem;font-weight:700;letter-spacing:-.03em;margin-bottom:.4rem;line-height:1.25;}
 .ob-sub{color:var(--text2);font-size:.9rem;margin-bottom:2rem;line-height:1.6;}
@@ -297,7 +298,7 @@ async function callClaude(userMsg, systemMsg) {
 }
 
 // ─── Main component ───────────────────────────────────────────
-export default function GrowthOS() {
+export default function RankActions() {
   // Auth & real data
   const [userId,       setUserId]       = useState(null);
   const [isConnected,  setIsConnected]  = useState(false);
@@ -330,7 +331,7 @@ export default function GrowthOS() {
     const params   = new URLSearchParams(window.location.search);
     const uid      = params.get("userId");
     const result   = params.get("auth");
-    const saved    = localStorage.getItem("growthOS_userId");
+    const saved    = localStorage.getItem("rankactions_userId");
 
     if (result === "error") setDataError("Google connection failed. Check your Worker URL is correct.");
 
@@ -338,7 +339,7 @@ export default function GrowthOS() {
     if (activeUid) {
       setUserId(activeUid);
       setIsConnected(true);
-      localStorage.setItem("growthOS_userId", activeUid);
+      localStorage.setItem("rankactions_userId", activeUid);
       window.history.replaceState({}, "", window.location.pathname); // clean URL
       setScreen("dashboard");
     }
@@ -477,7 +478,7 @@ export default function GrowthOS() {
   };
 
   const disconnect = () => {
-    localStorage.removeItem("growthOS_userId");
+    localStorage.removeItem("rankactions_userId");
     setUserId(null); setIsConnected(false); setSiteData(null); setDataError(null); setAiSummary(null);
   };
 
@@ -487,7 +488,7 @@ export default function GrowthOS() {
   if (screen === "onboarding") return (
     <><style>{CSS}</style>
     <div className="gos"><div className="ob">
-      <div className="ob-logo">Growth<em>OS</em></div>
+      <div className="ob-logo">Rank<em>Actions</em></div>
       <div className="ob-card">
         <div className="ob-step-label">Step {step} of 4</div>
         {step===1 && <>
@@ -548,7 +549,7 @@ export default function GrowthOS() {
   // ─────────────────────────────────────────────────────────────
   const Sidebar = () => (
     <div className="sidebar">
-      <div className="sidebar-logo">Growth<em>OS</em></div>
+      <div className="sidebar-logo">Rank<em>Actions</em></div>
       <div className="sidebar-nav">
         {[{id:"dashboard",icon:"⬡",label:"Dashboard"},{id:"siteDetail",icon:"◎",label:"Site Detail"},{id:"reports",icon:"📄",label:"Reports"},{id:"settings",icon:"⚙",label:"Settings"}]
           .map(n=>(

@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import GrowthOS from './App'
+import RankActions from './App'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <GrowthOS />
+    <RankActions />
   </React.StrictMode>,
 )
