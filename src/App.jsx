@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 // ─────────────────────────────────────────────────────────────
 // ⚙️  CONFIG — paste your Worker URL here after deploying it
 // ─────────────────────────────────────────────────────────────
-const WORKER_URL = "https://growthOS-api.YOUR-SUBDOMAIN.workers.dev";
-
+const WORKER_URL = "https://growthros-api.danpritchard.workers.dev";
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
