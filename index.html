@@ -52,7 +52,7 @@
     {
       "@type": "Offer",
       "name": "Pro",
-      "price": "29",
+      "price": "50",
       "priceCurrency": "GBP",
       "billingIncrement": "P1M"
     }
@@ -295,6 +295,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:fl
 .price-btn.solid{background:var(--green);color:white;}
 .price-btn.solid:hover{opacity:.9;}
 
+/* ── Billing toggle ── */
+.billing-toggle{display:flex;align-items:center;justify-content:center;gap:.75rem;margin-bottom:2.5rem;}
+.billing-toggle-btn{background:none;border:none;font-family:var(--body);font-size:.9rem;font-weight:500;color:var(--ink3);cursor:pointer;padding:.4rem .9rem;border-radius:999px;transition:all .15s;}
+.billing-toggle-btn.active{background:var(--ink);color:white;font-weight:600;}
+.billing-save-badge{background:var(--green);color:white;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:.2rem .55rem;border-radius:999px;}
+.price-annual-note{font-size:.75rem;color:var(--green);font-weight:600;margin-top:.2rem;}
+.price-card.featured .price-annual-note{color:#0fdb8a;}
+.price-strikethrough{font-size:1rem;color:var(--ink3);text-decoration:line-through;margin-right:.35rem;font-weight:400;}
+.price-card.featured .price-strikethrough{color:rgba(255,255,255,.4);}
+
 /* ── Testimonials ── */
 .testimonials{padding:5rem 2rem;background:var(--bg2);border-top:1px solid var(--border);}
 .testimonials-inner{max-width:1100px;margin:0 auto;}
@@ -527,7 +537,7 @@ footer{padding:2.5rem 2rem;border-top:1px solid var(--border);display:flex;align
         <li style="display:flex;align-items:flex-start;gap:.65rem;font-size:.9rem;color:var(--ink2);"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span>Download as HTML or copy directly into WordPress</li>
       </ul>
       <a href="https://app.rankactions.com" class="btn-primary" style="display:inline-block;text-decoration:none;">Try the content generator →</a>
-      <div style="margin-top:.75rem;font-size:.78rem;color:var(--ink3);">Available on Pro plan · £29/month</div>
+      <div style="margin-top:.75rem;font-size:.78rem;color:var(--ink3);">Available on Pro plan · £50/month</div>
     </div>
     <div class="reveal">
       <div style="background:var(--ink);border-radius:14px;overflow:hidden;box-shadow:0 16px 48px rgba(15,14,12,.2);">
@@ -625,17 +635,33 @@ footer{padding:2.5rem 2rem;border-top:1px solid var(--border);display:flex;align
   <div class="pricing-header reveal">
     <div class="section-label" style="display:inline-block;margin-bottom:.75rem">Pricing</div>
     <h2>Simple pricing for small businesses and agencies</h2>
-    <p>No contracts. Cancel any time.</p>
+    <p>No contracts. Cancel any time. Free to start — no credit card needed.</p>
   </div>
-  <div class="pricing-grid reveal">
+
+  <!-- Billing toggle -->
+  <div style="display:flex;align-items:center;justify-content:center;gap:.5rem;margin-bottom:2.5rem;" class="reveal">
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:999px;padding:.3rem;display:inline-flex;gap:.25rem;">
+      <button id="btn-monthly" onclick="setBilling('monthly')"
+        style="background:var(--ink);color:white;border:none;border-radius:999px;padding:.5rem 1.25rem;font-family:var(--body);font-size:.875rem;font-weight:600;cursor:pointer;transition:all .2s;">
+        Monthly
+      </button>
+      <button id="btn-annual" onclick="setBilling('annual')"
+        style="background:none;color:var(--ink3);border:none;border-radius:999px;padding:.5rem 1.25rem;font-family:var(--body);font-size:.875rem;font-weight:500;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.5rem;">
+        Annual
+        <span style="background:var(--green);color:#000;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.2rem .5rem;border-radius:999px;">2 months free</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="pricing-grid reveal" style="grid-template-columns:repeat(3,1fr);">
     <div class="price-card">
       <div class="price-name">Free</div>
       <div class="price-amount">£0</div>
       <div class="price-period">forever</div>
       <ul class="price-features">
         <li>1 website</li>
-        <li>Weekly action list (top 3 fixes)</li>
-        <li>AI-written suggestions</li>
+        <li>Weekly action list — top 3 fixes</li>
+        <li>5 AI fix suggestions per month</li>
         <li>Search Console integration</li>
         <li>Basic SEO opportunities</li>
       </ul>
@@ -644,21 +670,76 @@ footer{padding:2.5rem 2rem;border-top:1px solid var(--border);display:flex;align
     <div class="price-card featured">
       <div class="price-badge">Most popular</div>
       <div class="price-name">Pro</div>
-      <div class="price-amount">£29</div>
-      <div class="price-period">per month · billed monthly</div>
+      <div class="price-amount" id="pro-price">£50</div>
+      <div class="price-period" id="pro-period">per month · cancel any time</div>
+      <div id="pro-annual-saving" style="display:none;font-size:.8rem;color:var(--green);font-weight:600;margin-bottom:.5rem;">Save £100 vs monthly billing</div>
       <ul class="price-features">
         <li>Unlimited websites</li>
-        <li>Full action list — all priorities</li>
+        <li>Full weekly action list</li>
         <li>Unlimited AI fix generator</li>
         <li>AI content generator — blog posts in 30 seconds</li>
         <li>Conversion tracking</li>
+        <li>Issues tab — technical SEO</li>
         <li>Weekly email digest</li>
         <li>Priority support</li>
       </ul>
-      <a href="https://app.rankactions.com" class="price-btn solid">Start 14-day free trial</a>
+      <a href="https://app.rankactions.com" class="price-btn solid" id="pro-cta">Start free trial</a>
+    </div>
+    <div class="price-card">
+      <div class="price-name">Agency</div>
+      <div class="price-amount" id="agency-price">£90</div>
+      <div class="price-period" id="agency-period">per month · cancel any time</div>
+      <div id="agency-annual-saving" style="display:none;font-size:.8rem;color:var(--green);font-weight:600;margin-bottom:.5rem;">Save £180 vs monthly billing</div>
+      <ul class="price-features">
+        <li>Everything in Pro</li>
+        <li>Unlimited client sites</li>
+        <li>DataForSEO keyword data <span style="font-size:.7rem;color:var(--ink3);">(coming soon)</span></li>
+        <li>Competitor tracking <span style="font-size:.7rem;color:var(--ink3);">(coming soon)</span></li>
+        <li>White-label reports <span style="font-size:.7rem;color:var(--ink3);">(coming soon)</span></li>
+        <li>Dedicated account support</li>
+      </ul>
+      <a href="https://app.rankactions.com" class="price-btn outline" id="agency-cta">Get started</a>
     </div>
   </div>
+  <div style="text-align:center;margin-top:1.5rem;font-size:.85rem;color:var(--ink3);">
+    All prices exclude VAT where applicable · Secure payments via Stripe
+  </div>
 </section>
+
+<script>
+var isAnnual = false;
+function setBilling(mode) {
+  isAnnual = (mode === 'annual');
+
+  // Toggle button styles
+  var btnM = document.getElementById('btn-monthly');
+  var btnA = document.getElementById('btn-annual');
+  btnM.style.background = isAnnual ? 'none'        : 'var(--ink)';
+  btnM.style.color      = isAnnual ? 'var(--ink3)'  : 'white';
+  btnA.style.background = isAnnual ? 'var(--ink)'   : 'none';
+  btnA.style.color      = isAnnual ? 'white'        : 'var(--ink3)';
+
+  // Pro card
+  document.getElementById('pro-price').innerHTML = isAnnual
+    ? '<span style="font-size:1.1rem;color:var(--ink3);text-decoration:line-through;margin-right:.25rem;">£600</span>£500'
+    : '£50';
+  document.getElementById('pro-period').innerHTML = isAnnual
+    ? 'per year &mdash; just <strong>£41.67/mo</strong>'
+    : 'per month &middot; cancel any time';
+  document.getElementById('pro-annual-saving').style.display = isAnnual ? 'block' : 'none';
+  document.getElementById('pro-cta').textContent = isAnnual ? 'Get started — best value' : 'Start free trial';
+
+  // Agency card
+  document.getElementById('agency-price').innerHTML = isAnnual
+    ? '<span style="font-size:1.1rem;color:var(--ink3);text-decoration:line-through;margin-right:.25rem;">£1,080</span>£900'
+    : '£90';
+  document.getElementById('agency-period').innerHTML = isAnnual
+    ? 'per year &mdash; just <strong>£75/mo</strong>'
+    : 'per month &middot; cancel any time';
+  document.getElementById('agency-annual-saving').style.display = isAnnual ? 'block' : 'none';
+  document.getElementById('agency-cta').textContent = isAnnual ? 'Get started — best value' : 'Get started';
+}
+</script>
 
 <!-- ── FAQ ── -->
 <section class="faq" id="faq" aria-label="Frequently asked questions about RankActions">
