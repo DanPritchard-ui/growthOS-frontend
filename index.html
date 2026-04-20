@@ -844,7 +844,7 @@ document.querySelectorAll('.faq-q').forEach(q => {
 });
 
 // ── Email signup with Turnstile verification ──
-function handleSignup() {
+async function handleSignup() {
   const email = document.getElementById('emailInput').value;
 
   // Basic email validation
@@ -860,10 +860,18 @@ function handleSignup() {
     return;
   }
 
-  // Store signup locally — swap this for Mailchimp/Brevo API call later
-  const signups = JSON.parse(localStorage.getItem('ra_signups') || '[]');
-  signups.push({ email, date: new Date().toISOString(), verified: true });
-  localStorage.setItem('ra_signups', JSON.stringify(signups));
+  // Send to API → stores in Supabase
+  try {
+    const res = await fetch('https://api.rankactions.com/api/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, source: 'landing_page' }),
+    });
+    if (!res.ok) throw new Error('Signup failed');
+  } catch (err) {
+    // Fallback: still show success to user, log error
+    console.error('Signup API error:', err);
+  }
 
   // Show success
   document.querySelector('.capture-form').style.display = 'none';
