@@ -143,13 +143,21 @@
 }
 </script>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HTQTTGR9TV"></script>
+<!-- Google tag (gtag.js) — only loads if user has accepted analytics cookies -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-HTQTTGR9TV');
+  (function() {
+    var consent = localStorage.getItem('ra_cookies_accepted');
+    if (consent === 'essential') return; // user opted out of analytics
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HTQTTGR9TV';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-HTQTTGR9TV', { anonymize_ip: true });
+  })();
 </script>
 
 <!-- ── Fonts ── -->
@@ -889,6 +897,38 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
+
+// ── Cookie consent banner ──
+(function() {
+  if (localStorage.getItem('ra_cookies_accepted')) return;
+  const banner = document.createElement('div');
+  banner.id = 'cookie-banner';
+  banner.innerHTML = `
+    <div style="position:fixed;bottom:0;left:0;right:0;z-index:9999;background:var(--ink);border-top:1px solid rgba(255,255,255,.1);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;animation:fadeUp .4s ease both;">
+      <div style="flex:1;min-width:280px;">
+        <div style="color:rgba(255,255,255,.9);font-size:.85rem;font-family:var(--body);line-height:1.6;">
+          We use cookies for essential site functionality and analytics to improve your experience.
+          <a href="/privacy.html" style="color:var(--green);text-decoration:underline;margin-left:.25rem;">Privacy Policy</a>
+        </div>
+      </div>
+      <div style="display:flex;gap:.6rem;flex-shrink:0;">
+        <button onclick="acceptCookies('essential')" style="background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:.5rem 1rem;font-family:var(--body);font-size:.82rem;cursor:pointer;">Essential only</button>
+        <button onclick="acceptCookies('all')" style="background:var(--green);color:white;border:none;border-radius:8px;padding:.5rem 1.25rem;font-family:var(--body);font-size:.82rem;font-weight:600;cursor:pointer;">Accept all</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(banner);
+})();
+
+function acceptCookies(level) {
+  localStorage.setItem('ra_cookies_accepted', level);
+  const banner = document.getElementById('cookie-banner');
+  if (banner) banner.remove();
+  // If essential only, disable Google Analytics
+  if (level === 'essential') {
+    window['ga-disable-G-HTQTTGR9TV'] = true;
+  }
+}
 </script>
 </body>
 </html>
