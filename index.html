@@ -394,16 +394,37 @@ footer{padding:2.5rem 2rem;border-top:1px solid var(--border);display:flex;align
 
 /* ── Responsive ── */
 @media(max-width:768px){
+  html,body{overflow-x:hidden;}
   .problem-grid{grid-template-columns:1fr;}
   .steps{grid-template-columns:1fr;}
   .features-grid{grid-template-columns:1fr;}
-  .pricing-grid{grid-template-columns:1fr;}
+  .pricing-grid{grid-template-columns:1fr!important;}
   .testi-grid{grid-template-columns:1fr;}
   .mock-kpis{grid-template-columns:1fr 1fr;}
   .capture-form{flex-direction:column;}
   .nav-links{display:none;}
   footer{flex-direction:column;text-align:center;}
+  .footer-links{flex-wrap:wrap;justify-content:center;gap:.75rem;}
   [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
+  [style*="grid-template-columns:repeat"]{grid-template-columns:1fr!important;}
+  .hero h1{font-size:2rem;}
+  .hero-sub{font-size:1rem;}
+  .hero-actions{flex-direction:column;width:100%;}
+  .hero-actions .btn-primary,.hero-actions .btn-secondary{width:100%;text-align:center;}
+  .pricing{padding:3rem 1rem;}
+  .price-card{margin-bottom:1rem;}
+  .price-amount{font-size:2.2rem;}
+  .billing-toggle{flex-wrap:wrap;}
+  nav{padding:.75rem 1rem;}
+  .nav-logo{font-size:1rem;}
+  .nav-by{display:none;}
+  section{padding-left:1rem!important;padding-right:1rem!important;}
+  .mock-dashboard{font-size:.75rem;}
+  .preview-inner h2{font-size:1.4rem;}
+  .vs-card{font-size:.8rem;}
+  .vs-cell{padding:.6rem .75rem;font-size:.78rem;}
+  .trust-bar{padding:1.5rem 1rem;}
+  .trust-badges{gap:1.5rem;}
 }
 </style>
 </head>
