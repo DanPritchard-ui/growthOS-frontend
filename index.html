@@ -836,53 +836,73 @@ footer{padding:2.5rem 2rem;border-top:1px solid var(--border);display:flex;align
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
       <div>
         <div class="section-label" style="display:inline-block;margin-bottom:.75rem">Page Audit</div>
-        <h2 style="font-family:var(--display);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-.03em;margin-bottom:1rem;line-height:1.2;">Instant SEO health check<br/>for any page</h2>
-        <p style="color:var(--ink2);line-height:1.75;margin-bottom:1.5rem;">Enter any URL and get a score out of 100 with specific fixes. No technical knowledge needed — every issue includes a plain English explanation of what's wrong and exactly how to fix it.</p>
+        <h2 style="font-family:var(--display);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-.03em;margin-bottom:1rem;line-height:1.2;">SEO + Performance<br/>health check in one scan</h2>
+        <p style="color:var(--ink2);line-height:1.75;margin-bottom:1.5rem;">Enter any URL and get two scores — an SEO health check (12 on-page checks) and a Google PageSpeed performance score with Core Web Vitals. Every issue includes a plain English explanation and exactly how to fix it.</p>
         <div style="display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.5rem;">
-          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--ink2);">🔴 <strong style="color:var(--ink);">Critical:</strong> Missing title tag, no meta description</div>
-          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--ink2);">🟡 <strong style="color:var(--ink);">Warnings:</strong> Title too long, missing alt text</div>
-          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--ink2);">🟢 <strong style="color:var(--ink);">Passed:</strong> HTTPS, canonical, viewport, schema</div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--ink2);">🔍 <strong style="color:var(--ink);">SEO checks:</strong> Title, meta, headings, images, schema, links</div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--ink2);">⚡ <strong style="color:var(--ink);">Core Web Vitals:</strong> LCP, CLS, FCP from Google PageSpeed</div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--ink2);">🎯 <strong style="color:var(--ink);">Opportunities:</strong> Specific fixes with estimated time savings</div>
         </div>
         <a href="https://app.rankactions.com" class="btn-primary" style="display:inline-block;text-decoration:none;">Try a free audit →</a>
       </div>
       <!-- Mock audit result -->
-      <div style="background:#0c0e1a;border-radius:16px;border:1px solid var(--border);padding:2rem;position:relative;overflow:hidden;">
-        <!-- Score gauge -->
-        <div style="text-align:center;margin-bottom:1.5rem;">
-          <div style="position:relative;display:inline-block;">
-            <svg width="140" height="80" viewBox="0 0 140 80">
-              <path d="M 15 75 A 55 55 0 0 1 125 75" fill="none" stroke="#1e2440" stroke-width="10" stroke-linecap="round"/>
-              <path d="M 15 75 A 55 55 0 0 1 107 35" fill="none" stroke="#0fdb8a" stroke-width="10" stroke-linecap="round"/>
+      <div style="background:#0c0e1a;border-radius:16px;border:1px solid var(--border);padding:1.5rem;position:relative;overflow:hidden;">
+        <!-- Dual score gauges -->
+        <div style="display:flex;justify-content:center;gap:1.5rem;margin-bottom:1rem;">
+          <div style="text-align:center;">
+            <svg width="100" height="58" viewBox="0 0 100 58">
+              <path d="M 10 53 A 40 40 0 0 1 90 53" fill="none" stroke="#1e2440" stroke-width="8" stroke-linecap="round"/>
+              <path d="M 10 53 A 40 40 0 0 1 82 25" fill="none" stroke="#0fdb8a" stroke-width="8" stroke-linecap="round"/>
             </svg>
-            <div style="position:absolute;bottom:5px;left:50%;transform:translateX(-50%);font-size:1.8rem;font-weight:800;font-family:'JetBrains Mono',monospace;color:#0fdb8a;">78</div>
+            <div style="font-size:1.4rem;font-weight:800;font-family:monospace;color:#0fdb8a;margin-top:-.35rem;">89</div>
+            <div style="font-size:.6rem;color:#8590b8;">SEO · Grade B</div>
           </div>
-          <div style="font-size:.75rem;font-weight:700;color:#0fdb8a;margin-top:.25rem;">GRADE B</div>
+          <div style="text-align:center;">
+            <svg width="100" height="58" viewBox="0 0 100 58">
+              <path d="M 10 53 A 40 40 0 0 1 90 53" fill="none" stroke="#1e2440" stroke-width="8" stroke-linecap="round"/>
+              <path d="M 10 53 A 40 40 0 0 1 42 16" fill="none" stroke="#f5a623" stroke-width="8" stroke-linecap="round"/>
+            </svg>
+            <div style="font-size:1.4rem;font-weight:800;font-family:monospace;color:#f5a623;margin-top:-.35rem;">40</div>
+            <div style="font-size:.6rem;color:#8590b8;">Performance</div>
+          </div>
         </div>
-        <!-- Summary pills -->
-        <div style="display:flex;justify-content:center;gap:.75rem;margin-bottom:1.25rem;">
-          <span style="background:rgba(240,62,95,.12);color:#f03e5f;font-size:.7rem;font-weight:700;padding:.25rem .6rem;border-radius:6px;">1 Critical</span>
-          <span style="background:rgba(245,166,35,.12);color:#f5a623;font-size:.7rem;font-weight:700;padding:.25rem .6rem;border-radius:6px;">2 Warnings</span>
-          <span style="background:rgba(15,219,138,.12);color:#0fdb8a;font-size:.7rem;font-weight:700;padding:.25rem .6rem;border-radius:6px;">9 Passed</span>
+        <!-- CWV metrics -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem;margin-bottom:1rem;">
+          <div style="background:#111425;border-radius:6px;padding:.4rem;text-align:center;">
+            <div style="font-size:.55rem;color:#4e5880;font-weight:600;">LCP</div>
+            <div style="font-size:.85rem;font-weight:700;font-family:monospace;color:#f03e5f;">6.9s</div>
+            <div style="font-size:.5rem;color:#f03e5f;">Poor</div>
+          </div>
+          <div style="background:#111425;border-radius:6px;padding:.4rem;text-align:center;">
+            <div style="font-size:.55rem;color:#4e5880;font-weight:600;">CLS</div>
+            <div style="font-size:.85rem;font-weight:700;font-family:monospace;color:#0fdb8a;">0.000</div>
+            <div style="font-size:.5rem;color:#0fdb8a;">Good</div>
+          </div>
+          <div style="background:#111425;border-radius:6px;padding:.4rem;text-align:center;">
+            <div style="font-size:.55rem;color:#4e5880;font-weight:600;">FCP</div>
+            <div style="font-size:.85rem;font-weight:700;font-family:monospace;color:#f03e5f;">4.4s</div>
+            <div style="font-size:.5rem;color:#f03e5f;">Poor</div>
+          </div>
         </div>
         <!-- Issue list -->
-        <div style="display:flex;flex-direction:column;gap:.5rem;">
-          <div style="background:#111425;border-radius:8px;padding:.65rem .85rem;border-left:3px solid #f03e5f;">
-            <div style="font-size:.68rem;font-weight:700;color:#f03e5f;margin-bottom:.2rem;">CRITICAL · META DESCRIPTION</div>
-            <div style="font-size:.78rem;color:#dde2f5;">No meta description found</div>
-            <div style="font-size:.7rem;color:#8590b8;margin-top:.2rem;">Add a 150-155 character summary that includes your target keyword</div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;">
+          <div style="background:#111425;border-radius:6px;padding:.55rem .75rem;border-left:3px solid #f5a623;">
+            <div style="font-size:.6rem;font-weight:700;color:#f5a623;margin-bottom:.15rem;">WARNING · TITLE TAG</div>
+            <div style="font-size:.72rem;color:#dde2f5;">Title too long (72 chars — truncates at ~60)</div>
           </div>
-          <div style="background:#111425;border-radius:8px;padding:.65rem .85rem;border-left:3px solid #f5a623;">
-            <div style="font-size:.68rem;font-weight:700;color:#f5a623;margin-bottom:.2rem;">WARNING · IMAGES</div>
-            <div style="font-size:.78rem;color:#dde2f5;">3 of 8 images missing alt text</div>
-            <div style="font-size:.7rem;color:#8590b8;margin-top:.2rem;">Add descriptive alt text to each image — include keywords where natural</div>
+          <div style="background:#111425;border-radius:6px;padding:.55rem .75rem;border-left:3px solid #f5a623;">
+            <div style="font-size:.6rem;font-weight:700;color:#f5a623;margin-bottom:.15rem;">OPPORTUNITY · UNUSED CSS</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div style="font-size:.72rem;color:#dde2f5;">Reduce unused CSS</div>
+              <span style="background:rgba(15,219,138,.12);color:#0fdb8a;font-size:.55rem;font-weight:700;padding:.1rem .35rem;border-radius:3px;">Save 0.8s</span>
+            </div>
           </div>
-          <div style="display:flex;gap:.3rem;flex-wrap:wrap;padding-top:.25rem;">
-            <span style="font-size:.65rem;color:#0fdb8a;background:rgba(15,219,138,.06);padding:.2rem .4rem;border-radius:4px;">✓ Title tag</span>
-            <span style="font-size:.65rem;color:#0fdb8a;background:rgba(15,219,138,.06);padding:.2rem .4rem;border-radius:4px;">✓ H1</span>
-            <span style="font-size:.65rem;color:#0fdb8a;background:rgba(15,219,138,.06);padding:.2rem .4rem;border-radius:4px;">✓ HTTPS</span>
-            <span style="font-size:.65rem;color:#0fdb8a;background:rgba(15,219,138,.06);padding:.2rem .4rem;border-radius:4px;">✓ Schema</span>
-            <span style="font-size:.65rem;color:#0fdb8a;background:rgba(15,219,138,.06);padding:.2rem .4rem;border-radius:4px;">✓ Canonical</span>
-            <span style="font-size:.65rem;color:#0fdb8a;background:rgba(15,219,138,.06);padding:.2rem .4rem;border-radius:4px;">✓ Viewport</span>
+          <div style="display:flex;gap:.25rem;flex-wrap:wrap;padding-top:.15rem;">
+            <span style="font-size:.55rem;color:#0fdb8a;background:rgba(15,219,138,.06);padding:.15rem .35rem;border-radius:3px;">✓ H1</span>
+            <span style="font-size:.55rem;color:#0fdb8a;background:rgba(15,219,138,.06);padding:.15rem .35rem;border-radius:3px;">✓ HTTPS</span>
+            <span style="font-size:.55rem;color:#0fdb8a;background:rgba(15,219,138,.06);padding:.15rem .35rem;border-radius:3px;">✓ Schema</span>
+            <span style="font-size:.55rem;color:#0fdb8a;background:rgba(15,219,138,.06);padding:.15rem .35rem;border-radius:3px;">✓ Canonical</span>
+            <span style="font-size:.55rem;color:#0fdb8a;background:rgba(15,219,138,.06);padding:.15rem .35rem;border-radius:3px;">✓ 10 Passed</span>
           </div>
         </div>
       </div>
@@ -1009,8 +1029,8 @@ footer{padding:2.5rem 2rem;border-top:1px solid var(--border);display:flex;align
     </div>
     <div class="feature-card reveal">
       <div class="feature-icon g">🔍</div>
-      <h3>Page SEO Audit</h3>
-      <p>Enter any URL and get an instant SEO health score. Checks title tags, meta descriptions, headings, images, schema, internal links, page speed — with specific fixes for every issue found.</p>
+      <h3>Page SEO + Performance Audit</h3>
+      <p>Enter any URL and get dual scores — SEO health (12 on-page checks) and Google PageSpeed performance with Core Web Vitals (LCP, CLS, FCP). Includes specific fixes with estimated time savings.</p>
     </div>
     <div class="feature-card reveal">
       <div class="feature-icon n">🌐</div>
@@ -1043,6 +1063,7 @@ footer{padding:2.5rem 2rem;border-top:1px solid var(--border);display:flex;align
           <tr><td style="text-align:left;padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--ink2);font-weight:600;">Writes the fix for you</td><td style="padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--green);font-weight:700;">✓ AI-generated</td><td style="padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--ink3);">✗</td><td style="padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--ink3);">✗</td><td style="padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--ink3);">✗</td></tr>
           <tr><td style="text-align:left;padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--ink2);font-weight:600;">Generates blog posts</td><td style="padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--green);font-weight:700;">✓ SEO-optimised</td><td style="padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--ink3);">Add-on</td><td style="padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--ink3);">✗</td><td style="padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--ink3);">✗</td></tr>
           <tr><td style="text-align:left;padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--ink2);font-weight:600;">SEO knowledge needed</td><td style="padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--green);font-weight:700;">None</td><td style="padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--ink3);">Expert</td><td style="padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--ink3);">Expert</td><td style="padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--ink3);">Moderate</td></tr>
+          <tr><td style="text-align:left;padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--ink2);font-weight:600;">Core Web Vitals audit</td><td style="padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--green);font-weight:700;">✓ Built in</td><td style="padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--ink3);">Add-on</td><td style="padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--ink3);">✗</td><td style="padding:.65rem .5rem;border-bottom:1px solid var(--border);color:var(--ink3);">✗</td></tr>
           <tr><td style="text-align:left;padding:.65rem .5rem;color:var(--ink2);font-weight:600;">Time to first result</td><td style="padding:.65rem .5rem;color:var(--green);font-weight:700;">5 minutes</td><td style="padding:.65rem .5rem;color:var(--ink3);">Days-weeks</td><td style="padding:.65rem .5rem;color:var(--ink3);">Days-weeks</td><td style="padding:.65rem .5rem;color:var(--ink3);">Days</td></tr>
         </tbody>
       </table>
@@ -1098,7 +1119,7 @@ footer{padding:2.5rem 2rem;border-top:1px solid var(--border);display:flex;align
         <li>Full action list</li>
         <li>20 AI fixes per month</li>
         <li>Rank Tracker</li>
-        <li>Unlimited page audits</li>
+        <li>Unlimited page audits + Core Web Vitals</li>
         <li>Weekly email digest</li>
       </ul>
       <a href="https://app.rankactions.com" class="price-btn outline" id="starter-cta">Get started</a>
@@ -1116,7 +1137,7 @@ footer{padding:2.5rem 2rem;border-top:1px solid var(--border);display:flex;align
         <li>Strategy Planner</li>
         <li>Link Building tools</li>
         <li>Rank Tracker</li>
-        <li>Page Audit</li>
+        <li>Page Audit + Core Web Vitals</li>
         <li>Weekly email digest</li>
       </ul>
       <a href="https://app.rankactions.com" class="price-btn solid" id="pro-cta">Start free trial</a>
