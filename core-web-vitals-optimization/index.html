@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Web Vitals Optimization: Pass Google's Page Experience Test</title>
+    <meta name="description" content="Master core web vitals optimization to pass Google's page experience test. Learn LCP, INP, and CLS metrics plus proven strategies to improve rankings.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rankactions.com/core-web-vitals-optimization/">
+    <meta property="og:title" content="Core Web Vitals Optimization: Pass Google's Page Experience Test">
+    <meta property="og:description" content="Master core web vitals optimization to pass Google's page experience test. Learn LCP, INP, and CLS metrics plus proven strategies to improve rankings.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://rankactions.com/core-web-vitals-optimization/">
+    <meta property="og:site_name" content="RankActions">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Core Web Vitals Optimization: Pass Google's Page Experience Test",
+      "description": "Master core web vitals optimization to pass Google's page experience test. Learn LCP, INP, and CLS metrics plus proven strategies to improve rankings.",
+      "datePublished": "2026-08-05",
+      "dateModified": "2026-08-05",
+      "author": {
+        "@type": "Organization",
+        "name": "RankActions"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "RankActions",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rankactions.com/logo.png"
+        }
+      }
+    }
+    </script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f3ee;--bg2:#edeae3;--white:#ffffff;--ink:#0f0e0c;--ink2:#3d3b35;--ink3:#7a776e;--green:#0a7c4e;--green-mid:#c0e8d4;--green-light:#e8f5ef;--amber:#b85c00;--border:#d9d5cc;--radius:12px;--display:'Manrope',sans-serif;--body:'IBM Plex Sans',sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;animation:none!important;}}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.7;font-size:1.03rem;}
+a{color:var(--green);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;}
+a:hover{text-decoration-thickness:2px;}
+a:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:4px;}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--green);z-index:60;}
+nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 2rem;background:rgba(245,243,238,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--display);font-size:1.15rem;font-weight:800;color:var(--ink);text-decoration:none;letter-spacing:-.03em;}
+.nav-logo em{color:var(--green);font-style:normal;}
+.nav-links{display:flex;align-items:center;gap:1.4rem;font-size:.92rem;}
+.nav-links a{color:var(--ink2);text-decoration:none;font-weight:500;}
+.nav-links a:hover{color:var(--green);}
+.nav-cta{background:var(--green);color:var(--white)!important;padding:.5rem 1.05rem;border-radius:8px;font-weight:600;text-decoration:none;transition:background .2s;}
+.nav-cta:hover{background:#086b43;}
+.hero{position:relative;max-width:1200px;margin:0 auto;padding:3.5rem 2rem 2.25rem;overflow:hidden;}
+.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(var(--border) 1px,transparent 1px);background-size:26px 26px;opacity:.5;pointer-events:none;}
+.hero-inner{position:relative;max-width:780px;}
+.hero-spark{position:absolute;right:2rem;bottom:1.5rem;width:300px;height:150px;opacity:.9;pointer-events:none;}
+.post-tag{display:inline-block;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;padding:.32rem .65rem;border-radius:6px;background:var(--green-light);color:var(--green);margin-bottom:1.1rem;}
+.post-tag.pillar{background:var(--green);color:var(--white);}
+h1{font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-height:1.1;font-size:clamp(2.1rem,4.5vw,3.1rem);margin-bottom:1rem;}
+.subtitle{font-size:1.18rem;color:var(--ink2);max-width:660px;margin-bottom:1.4rem;}
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem;font-size:.85rem;color:var(--ink3);}
+.meta .dot{width:3px;height:3px;border-radius:50%;background:var(--ink3);}
+.page-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:3.5rem;padding:0 2rem 3rem;align-items:start;}
+.main-col{min-width:0;}
+.guide-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem 1.6rem;box-shadow:0 6px 20px rgba(15,14,12,.05);margin:1.25rem 0 0;}
+.guide-card-label{font-family:var(--display);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--ink3);margin-bottom:.85rem;}
+.guide-card ul{list-style:none;margin:0;}
+.guide-card li{display:flex;gap:.7rem;align-items:flex-start;padding:.42rem 0;font-size:.96rem;color:var(--ink2);}
+.guide-card li+li{border-top:1px solid var(--bg2);}
+.guide-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:.5rem;}
+.article-body{padding:2rem 0 1rem;}
+.article-body p{margin-bottom:1.3rem;max-width:72ch;}
+.article-body ul,.article-body ol{margin:0 0 1.3rem 1.4rem;max-width:70ch;}
+.article-body li{margin-bottom:.45rem;}
+h2{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1.2;font-size:1.72rem;margin:2.7rem 0 1rem;padding-top:1.1rem;position:relative;}
+h2::before{content:"";position:absolute;top:0;left:0;width:34px;height:4px;border-radius:2px;background:var(--green);}
+h3{font-family:var(--display);font-weight:700;letter-spacing:-.015em;font-size:1.24rem;margin:1.9rem 0 .7rem;}
+strong{color:var(--ink);font-weight:600;}
+.callout{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:var(--radius);padding:1.1rem 1.4rem;margin:1.8rem 0;font-size:.97rem;max-width:74ch;}
+.callout strong{color:var(--green);font-family:var(--display);font-weight:800;font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;display:block;margin-bottom:.35rem;}
+.sidebar{position:sticky;top:4.6rem;display:flex;flex-direction:column;gap:1rem;}
+.side-label{font-family:var(--display);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--ink3);}
+.side-card{display:block;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:.95rem 1.1rem;text-decoration:none;transition:border-color .2s,transform .2s,box-shadow .2s;}
+.side-card:hover{border-color:var(--green-mid);transform:translateY(-2px);box-shadow:0 6px 18px rgba(15,14,12,.06);}
+.side-card .post-tag{margin-bottom:.45rem;font-size:.6rem;padding:.22rem .5rem;}
+.side-card-title{font-family:var(--display);font-weight:700;font-size:.92rem;line-height:1.35;color:var(--ink);letter-spacing:-.01em;}
+.side-card:hover .side-card-title{color:var(--green);}
+.side-cta{background:var(--ink);border:none;border-radius:var(--radius);padding:1.3rem 1.2rem;text-align:center;}
+.side-cta p{color:#c9c6bd;font-size:.85rem;margin:.2rem 0 .9rem;}
+.side-cta-title{font-family:var(--display);font-weight:800;color:var(--white);font-size:1rem;letter-spacing:-.01em;}
+.cta-button{display:inline-block;background:var(--green);color:var(--white);padding:.7rem 1.3rem;border-radius:8px;font-family:var(--display);font-weight:700;font-size:.9rem;text-decoration:none;transition:background .2s,transform .2s;}
+.cta-button:hover{background:#0c9159;transform:translateY(-1px);}
+.cta-panel{margin:1.5rem 0 0;}
+.cta-panel-inner{background:var(--ink);color:var(--white);border-radius:var(--radius);padding:2.6rem 2.2rem;text-align:center;}
+.cta-panel h2{color:var(--white);margin:0 0 .6rem;padding:0;font-size:1.55rem;}
+.cta-panel h2::before{display:none;}
+.cta-panel p{color:#c9c6bd;max-width:520px;margin:0 auto 1.5rem;font-size:.98rem;}
+.cta-panel .cta-button{padding:.85rem 1.8rem;font-size:1rem;}
+.cta-sub{margin-top:.9rem;font-size:.8rem;color:#8a877e!important;}
+footer{background:var(--ink);color:#c9c6bd;padding:1.6rem 2rem;text-align:center;font-size:.88rem;margin-top:3rem;}
+footer a{color:var(--green-mid);text-decoration:none;margin:0 .55rem;}
+footer a:hover{text-decoration:underline;}
+.foot-logo{font-family:var(--display);font-weight:800;color:var(--white);letter-spacing:-.03em;}
+.foot-logo em{color:#1ea863;font-style:normal;}
+@media (max-width:980px){.page-grid{grid-template-columns:1fr;gap:1.5rem;}.sidebar{position:static;}.hero-spark{display:none;}}
+@media (max-width:640px){nav{padding:.8rem 1.1rem;}.nav-links a:not(.nav-cta){display:none;}.hero{padding:2.4rem 1.1rem 1.6rem;}.page-grid{padding:0 1.1rem 2rem;}}
+</style>
+</head>
+<body>
+<div id="progress" aria-hidden="true"></div>
+
+<nav aria-label="Main navigation">
+  <a href="/" class="nav-logo">Rank<em>Actions</em></a>
+  <div class="nav-links">
+    <a href="/#features">Features</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="/blog/">Blog</a>
+    <a href="https://app.rankactions.com" class="nav-cta">Try free →</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <svg class="hero-spark" viewBox="0 0 300 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <polyline points="0,130 45,118 90,122 135,95 180,102 225,60 270,68 300,30" fill="none" stroke="#0a7c4e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="0,130 45,118 90,122 135,95 180,102 225,60 270,68 300,30" fill="none" stroke="#c0e8d4" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" opacity=".35"/>
+  <circle cx="300" cy="30" r="6" fill="#0a7c4e"/>
+  <circle cx="225" cy="60" r="4" fill="#0a7c4e" opacity=".55"/>
+  <circle cx="135" cy="95" r="4" fill="#0a7c4e" opacity=".55"/>
+</svg>
+  <div class="hero-inner">
+    <span class="post-tag">Technical SEO</span>
+    <h1>Core Web Vitals Explained: How to Pass Google's Page Experience Test</h1>
+    <p class="subtitle">Master the metrics that matter for user experience and search rankings</p>
+    <div class="meta">
+      <span>By the RankActions team</span><span class="dot"></span><span>August 5, 2026</span><span class="dot"></span><span>7 min read</span>
+    </div>
+  </div>
+</header>
+
+<div class="page-grid">
+  <div class="main-col">
+    <div class="guide-card">
+      <div class="guide-card-label">In this guide</div>
+      <ul>
+          <li><span class="guide-dot"></span>What LCP, INP and CLS actually measure — with current targets</li>
+          <li><span class="guide-dot"></span>Optimisation techniques for loading, responsiveness and stability</li>
+          <li><span class="guide-dot"></span>How to monitor scores and avoid the common mistakes</li>
+      </ul>
+    </div>
+
+    <article class="article-body">
+      <p>Effective <strong>core web vitals optimization</strong> has become essential for websites competing in Google's search results. Since Google integrated page experience signals into its ranking algorithm, understanding and improving your Core Web Vitals scores isn't optional—it's a competitive necessity. These user-centric performance metrics directly influence how visitors interact with your site and how search engines evaluate your content quality.</p>
+        
+        <p>Core Web Vitals consist of three specific measurements that Google uses to assess the real-world user experience of your web pages. While technical SEO encompasses many elements, these metrics provide quantifiable standards that correlate with user satisfaction and engagement. Sites that excel in these measurements typically see lower bounce rates, higher conversion rates, and improved search visibility.</p>
+        
+        <h2>Understanding the Three Core Web Vitals Metrics</h2>
+        
+        <p>Google's page experience assessment centers on three distinct performance indicators, each addressing a specific aspect of user experience. Mastering these metrics requires both technical implementation and ongoing monitoring.</p>
+        
+        <h3>Largest Contentful Paint (LCP)</h3>
+        
+        <p>Largest Contentful Paint measures loading performance by tracking how long it takes for the largest visible content element to render on screen. This could be a hero image, video thumbnail, or large text block. Google considers an LCP of 2.5 seconds or less as "good," while anything over 4 seconds is categorized as "poor."</p>
+        
+        <p>The factors affecting LCP include server response times, render-blocking JavaScript and CSS, slow resource load times, and client-side rendering delays. Sites with fast LCP scores typically employ content delivery networks, optimized images with modern formats like WebP, and efficient caching strategies.</p>
+        
+        <h3>Interaction to Next Paint (INP)</h3>
+        
+        <p>Interaction to Next Paint measures responsiveness across the entire page visit — every click, tap and keypress, not just the first. It replaced First Input Delay as the official Core Web Vital in March 2024, and it’s a tougher test: where the old metric only timed the delay before the browser started processing your first interaction, INP times how long each interaction takes to produce a visible response on screen. A good INP score is 200 milliseconds or less.</p>
+        
+        <p>Heavy JavaScript execution is the primary culprit behind poor INP scores. When the browser's main thread is busy parsing and executing large JavaScript files, it cannot respond to user inputs promptly. Breaking up long tasks, implementing code splitting, and using web workers can dramatically improve this metric.</p>
+        
+        <h3>Cumulative Layout Shift (CLS)</h3>
+        
+        <p>Cumulative Layout Shift measures visual stability by quantifying unexpected layout shifts that occur during the page's entire lifespan. A good CLS score is 0.1 or less. Visual instability frustrates users—think of trying to click a button only to have an ad load above it, shifting your target downward.</p>
+        
+        <p>Common causes include images without dimensions, ads or embeds that inject content, dynamically injected content, and web fonts that cause flash of invisible text (FOIT) or flash of unstyled text (FOUT). Setting explicit width and height attributes on media elements prevents these jarring shifts.</p>
+        
+        <h2>Core Web Vitals Optimization Strategies for Faster Loading</h2>
+        
+        <p>Improving your LCP requires a systematic approach to identifying and eliminating bottlenecks in your content delivery pipeline. Start by analyzing your server response times through tools like Google PageSpeed Insights or Lighthouse.</p>
+        
+        <p>Implement these proven optimization techniques:</p>
+        
+        <ul>
+            <li><strong>Optimize server infrastructure:</strong> Upgrade hosting if necessary, implement proper caching headers, and consider using a CDN to serve static assets from geographically distributed servers</li>
+            <li><strong>Compress and optimize images:</strong> Use modern formats like WebP or AVIF, implement responsive images with srcset, and leverage lazy loading for below-the-fold content</li>
+            <li><strong>Minimize render-blocking resources:</strong> Defer non-critical JavaScript, inline critical CSS, and remove unused code through tree-shaking</li>
+            <li><strong>Preload critical resources:</strong> Use resource hints like preload, prefetch, and preconnect to prioritize essential assets</li>
+        </ul>
+        
+        <div class="callout">
+            <strong>Pro Tip:</strong> Your core web vitals optimization efforts should focus on field data (real user measurements) rather than just lab data. The Chrome User Experience Report provides actual performance data from real Chrome users, giving you authentic insights into how your pages perform in the wild.
+        </div>
+        
+        <h2>Essential Core Web Vitals Optimization Techniques for Interactivity</h2>
+        
+        <p>Improving INP requires reducing JavaScript work — not just during the initial load, but every time the user interacts with the page. Modern websites often ship hundreds of kilobytes of JavaScript, much of which isn't needed for the initial user interaction.</p>
+        
+        <p>Consider implementing these interactivity improvements:</p>
+        
+        <ul>
+            <li><strong>Code splitting:</strong> Break your JavaScript bundles into smaller chunks that load on demand rather than all at once</li>
+            <li><strong>Defer third-party scripts:</strong> Load analytics, social media widgets, and chat tools asynchronously to prevent blocking the main thread</li>
+            <li><strong>Optimize event handlers:</strong> Use passive event listeners and debounce/throttle expensive operations</li>
+            <li><strong>Implement progressive enhancement:</strong> Ensure core functionality works with minimal JavaScript, adding enhancements progressively</li>
+        </ul>
+        
+        <p>For content-heavy sites, consider adopting a partial hydration strategy where only interactive components receive JavaScript, leaving static content as HTML.</p>
+        
+        <h2>Preventing Layout Shifts Through Proper Resource Management</h2>
+        
+        <p>Achieving a low CLS score demands deliberate attention to how content renders and shifts during page load. The most effective approach is preventing shifts before they happen through proper resource dimensioning and load sequencing.</p>
+        
+        <h3>Reserve Space for Dynamic Content</h3>
+        
+        <p>Always specify width and height attributes on images and video elements. Modern browsers use these dimensions to calculate aspect ratio and reserve the appropriate space before the resource loads. For responsive designs, CSS aspect ratio properties maintain proper spacing regardless of viewport size.</p>
+        
+        <p>Advertisements and embeds pose particular challenges since their dimensions may not be known in advance. Create placeholder containers with minimum heights to prevent content from jumping when ads load. Consider using skeleton screens that provide visual placeholders during content loading.</p>
+        
+        <h2>Monitoring and Maintaining Your Core Web Vitals Performance</h2>
+        
+        <p>Core web vitals optimization isn't a one-time project—it requires continuous monitoring and refinement. Performance can degrade over time as new features are added, third-party scripts update, or content changes accumulate.</p>
+        
+        <p>Establish a monitoring framework that tracks both lab and field metrics. Google Search Console provides Core Web Vitals reports showing how your pages perform for actual users, categorized by mobile and desktop traffic. For comprehensive tracking across all your SEO metrics, platforms like <a href="https://rankactions.com/">RankActions</a> can centralize performance monitoring alongside keyword rankings and technical audits.</p>
+        
+        <p>Set performance budgets for your development team—specific thresholds for JavaScript bundle sizes, image weights, and third-party script counts. Automated testing in your deployment pipeline can catch regressions before they reach production.</p>
+        
+        <h2>Common Core Web Vitals Optimization Mistakes to Avoid</h2>
+        
+        <p>Many website owners make critical errors when attempting to improve their Core Web Vitals scores. Understanding these pitfalls helps you avoid wasted effort and potential negative impacts.</p>
+        
+        <p>Don't optimize solely for lab scores while ignoring field data. Lab testing occurs in controlled conditions that don't reflect real-world usage patterns, network conditions, or device capabilities. Field data from actual users provides the authentic performance picture that matters for rankings.</p>
+        
+        <p>Avoid sacrificing functionality for performance. Removing essential features to achieve better scores ultimately hurts user experience and conversion rates. The goal is optimizing implementation, not eliminating valuable content.</p>
+        
+        <p>Don't neglect mobile performance. Google's mobile-first indexing means your mobile Core Web Vitals carry more weight than desktop scores. Test and optimize thoroughly on actual mobile devices with realistic network conditions.</p>
+        
+        <div class="callout">
+            <strong>Important:</strong> Core Web Vitals represent just one component of a comprehensive technical SEO strategy. While these metrics matter for user experience and rankings, they work alongside traditional ranking factors like content quality, relevance, backlinks, and crawlability. Balance your optimization efforts across all aspects of SEO for maximum impact.
+        </div>
+        
+        <h2>Taking Action on Your Core Web Vitals Scores</h2>
+        
+        <p>Begin your core web vitals optimization journey by establishing baseline measurements. Run your key landing pages through Google PageSpeed Insights and review your Search Console Core Web Vitals report to identify which pages need attention most urgently.</p>
+        
+        <p>Prioritize fixes based on impact and effort. Quick wins like adding image dimensions or deferring third-party scripts provide immediate improvements with minimal development time. More complex optimizations like server upgrades or architecture changes should be scheduled as longer-term projects.</p>
+        
+        <p>Document your optimization process and track results over time. Performance improvements often take weeks to reflect in Search Console field data as Google collects sufficient user measurements. Patience and consistent monitoring ensure your efforts translate into measurable gains.</p>
+        
+        <p>The intersection of technical performance and user experience has never been more critical for search visibility. Sites that deliver fast, responsive, stable experiences earn both user satisfaction and algorithmic favor. By implementing systematic core web vitals optimization and maintaining ongoing performance discipline, you position your site for sustained success in competitive search landscapes. Visit <a href="https://rankactions.com/">RankActions</a> to discover how AI-powered SEO tools can streamline your technical optimization efforts and track improvements across all ranking factors.</p>
+        
+        <p>Core Web Vitals are one pillar of site health — our full <a href="https://rankactions.com/technical-seo-guide/">technical SEO guide</a> covers crawlability, indexation, schema and everything else Google checks before it ranks you.</p>
+    </article>
+
+<section class="cta-panel">
+      <div class="cta-panel-inner">
+        <h2>Know exactly what to fix on your website each week</h2>
+        <p>RankActions connects to your Google Search Console and turns the data into a prioritised, plain-English action list — no SEO expertise required.</p>
+        <a href="https://app.rankactions.com" class="cta-button">Try RankActions free →</a>
+        <p class="cta-sub">No credit card required</p>
+      </div>
+    </section>
+  </div>
+
+  <aside class="sidebar" aria-label="More from RankActions">
+    <div class="side-label">More from RankActions</div>
+    <a class="side-card" href="/technical-seo-guide/">
+      <span class="post-tag pillar">★ Pillar guide</span>
+      <div class="side-card-title">Technical SEO Guide: Fix the Issues Holding Your Site Back</div>
+    </a>
+    <a class="side-card" href="/fix-broken-links/">
+      <span class="post-tag">Technical SEO</span>
+      <div class="side-card-title">How to Find and Fix Broken Links on Your Website</div>
+    </a>
+    <a class="side-card" href="/website-crawl-budget-optimization/">
+      <span class="post-tag">Technical SEO</span>
+      <div class="side-card-title">Crawl Budget Optimization: Help Google Find Your Best Pages</div>
+    </a>
+    <a class="side-card" href="/schema-markup-for-small-business/">
+      <span class="post-tag">Technical SEO</span>
+      <div class="side-card-title">Schema Markup for Small Business: 5 Types to Use</div>
+    </a>
+    <a class="side-card" href="/ai-powered-seo-tool/">
+      <span class="post-tag">Product & workflow</span>
+      <div class="side-card-title">AI Powered SEO Tool: Fix Suggestions, Not Just Reports</div>
+    </a>
+    <div class="side-cta">
+      <div class="side-cta-title">Know what to fix each week</div>
+      <p>Turn your Search Console data into a prioritised action list.</p>
+      <a href="https://app.rankactions.com" class="cta-button">Try free →</a>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <span class="foot-logo">Rank<em>Actions</em></span> — AI-powered SEO for UK small businesses<br>
+  <a href="/">Home</a><a href="/blog/">Blog</a><a href="/how-to-improve-google-rankings/">Pillar guide</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a>
+</footer>
+<script>
+(function(){var b=document.getElementById('progress');if(!b)return;
+function u(){var d=document.documentElement,m=d.scrollHeight-d.clientHeight;b.style.width=(m>0?(d.scrollTop/m*100):0)+'%';}
+addEventListener('scroll',u,{passive:true});u();})();
+</script>
+</body>
+</html>
