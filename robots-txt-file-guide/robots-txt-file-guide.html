@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robots.txt Guide: Control How Search Engines Crawl Your Site</title>
+    <meta name="description" content="Learn how to create, configure and troubleshoot robots.txt to control search engine crawlers, protect crawl budget and avoid blocking pages you want indexed.">
+    <link rel="canonical" href="https://rankactions.com/robots-txt-file-guide/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Robots.txt Guide: Control How Search Engines Crawl Your Site">
+    <meta property="og:description" content="Learn how to create, configure and troubleshoot robots.txt to control search engine crawlers, protect crawl budget and avoid blocking pages you want indexed.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://rankactions.com/robots-txt-file-guide/">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Robots.txt Guide: Control How Search Engines Crawl Your Site",
+      "description": "Learn how to create, configure and troubleshoot robots.txt to control search engine crawlers, protect crawl budget and avoid blocking pages you want indexed.",
+      "datePublished": "2026-08-21",
+      "dateModified": "2026-08-21",
+      "author": {
+        "@type": "Organization",
+        "name": "RankActions"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "RankActions",
+        "url": "https://rankactions.com"
+      }
+    }
+    </script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f3ee;--bg2:#edeae3;--white:#ffffff;--ink:#0f0e0c;--ink2:#3d3b35;--ink3:#7a776e;--green:#0a7c4e;--green-mid:#c0e8d4;--green-light:#e8f5ef;--amber:#b85c00;--border:#d9d5cc;--radius:12px;--display:'Manrope',sans-serif;--body:'IBM Plex Sans',sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;animation:none!important;}}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.7;font-size:1.03rem;}
+a{color:var(--green);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;}
+a:hover{text-decoration-thickness:2px;}
+a:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:4px;}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--green);z-index:60;}
+nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 2rem;background:rgba(245,243,238,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--display);font-size:1.15rem;font-weight:800;color:var(--ink);text-decoration:none;letter-spacing:-.03em;}
+.nav-logo em{color:var(--green);font-style:normal;}
+.nav-links{display:flex;align-items:center;gap:1.4rem;font-size:.92rem;}
+.nav-links a{color:var(--ink2);text-decoration:none;font-weight:500;}
+.nav-links a:hover{color:var(--green);}
+.nav-cta{background:var(--green);color:var(--white)!important;padding:.5rem 1.05rem;border-radius:8px;font-weight:600;text-decoration:none;transition:background .2s;}
+.nav-cta:hover{background:#086b43;}
+.hero{position:relative;max-width:1200px;margin:0 auto;padding:3.5rem 2rem 2.25rem;overflow:hidden;}
+.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(var(--border) 1px,transparent 1px);background-size:26px 26px;opacity:.5;pointer-events:none;}
+.hero-inner{position:relative;max-width:780px;}
+.hero-spark{position:absolute;right:2rem;bottom:1.5rem;width:300px;height:150px;opacity:.9;pointer-events:none;}
+.post-tag{display:inline-block;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;padding:.32rem .65rem;border-radius:6px;background:var(--green-light);color:var(--green);margin-bottom:1.1rem;}
+.post-tag.pillar{background:var(--green);color:var(--white);}
+h1{font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-height:1.1;font-size:clamp(2.1rem,4.5vw,3.1rem);margin-bottom:1rem;}
+.subtitle{font-size:1.18rem;color:var(--ink2);max-width:660px;margin-bottom:1.4rem;}
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem;font-size:.85rem;color:var(--ink3);}
+.meta .dot{width:3px;height:3px;border-radius:50%;background:var(--ink3);}
+.page-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:3.5rem;padding:0 2rem 3rem;align-items:start;}
+.main-col{min-width:0;}
+.guide-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem 1.6rem;box-shadow:0 6px 20px rgba(15,14,12,.05);margin:1.25rem 0 0;}
+.guide-card-label{font-family:var(--display);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--ink3);margin-bottom:.85rem;}
+.guide-card ul{list-style:none;margin:0;}
+.guide-card li{display:flex;gap:.7rem;align-items:flex-start;padding:.42rem 0;font-size:.96rem;color:var(--ink2);}
+.guide-card li+li{border-top:1px solid var(--bg2);}
+.guide-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:.5rem;}
+.article-body{padding:2rem 0 1rem;}
+.article-body p{margin-bottom:1.3rem;max-width:72ch;}
+.article-body ul,.article-body ol{margin:0 0 1.3rem 1.4rem;max-width:70ch;}
+.article-body li{margin-bottom:.45rem;}
+h2{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1.2;font-size:1.72rem;margin:2.7rem 0 1rem;padding-top:1.1rem;position:relative;}
+h2::before{content:"";position:absolute;top:0;left:0;width:34px;height:4px;border-radius:2px;background:var(--green);}
+h3{font-family:var(--display);font-weight:700;letter-spacing:-.015em;font-size:1.24rem;margin:1.9rem 0 .7rem;}
+strong{color:var(--ink);font-weight:600;}
+.callout{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:var(--radius);padding:1.1rem 1.4rem;margin:1.8rem 0;font-size:.97rem;max-width:74ch;}
+.callout strong{color:var(--green);font-family:var(--display);font-weight:800;font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;display:block;margin-bottom:.35rem;}
+.sidebar{position:sticky;top:4.6rem;display:flex;flex-direction:column;gap:1rem;}
+.side-label{font-family:var(--display);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--ink3);}
+.side-card{display:block;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:.95rem 1.1rem;text-decoration:none;transition:border-color .2s,transform .2s,box-shadow .2s;}
+.side-card:hover{border-color:var(--green-mid);transform:translateY(-2px);box-shadow:0 6px 18px rgba(15,14,12,.06);}
+.side-card .post-tag{margin-bottom:.45rem;font-size:.6rem;padding:.22rem .5rem;}
+.side-card-title{font-family:var(--display);font-weight:700;font-size:.92rem;line-height:1.35;color:var(--ink);letter-spacing:-.01em;}
+.side-card:hover .side-card-title{color:var(--green);}
+.side-cta{background:var(--ink);border:none;border-radius:var(--radius);padding:1.3rem 1.2rem;text-align:center;}
+.side-cta p{color:#c9c6bd;font-size:.85rem;margin:.2rem 0 .9rem;}
+.side-cta-title{font-family:var(--display);font-weight:800;color:var(--white);font-size:1rem;letter-spacing:-.01em;}
+.cta-button{display:inline-block;background:var(--green);color:var(--white);padding:.7rem 1.3rem;border-radius:8px;font-family:var(--display);font-weight:700;font-size:.9rem;text-decoration:none;transition:background .2s,transform .2s;}
+.cta-button:hover{background:#0c9159;transform:translateY(-1px);}
+.cta-panel{margin:1.5rem 0 0;}
+.cta-panel-inner{background:var(--ink);color:var(--white);border-radius:var(--radius);padding:2.6rem 2.2rem;text-align:center;}
+.cta-panel h2{color:var(--white);margin:0 0 .6rem;padding:0;font-size:1.55rem;}
+.cta-panel h2::before{display:none;}
+.cta-panel p{color:#c9c6bd;max-width:520px;margin:0 auto 1.5rem;font-size:.98rem;}
+.cta-panel .cta-button{padding:.85rem 1.8rem;font-size:1rem;}
+.cta-sub{margin-top:.9rem;font-size:.8rem;color:#8a877e!important;}
+footer{background:var(--ink);color:#c9c6bd;padding:1.6rem 2rem;text-align:center;font-size:.88rem;margin-top:3rem;}
+footer a{color:var(--green-mid);text-decoration:none;margin:0 .55rem;}
+footer a:hover{text-decoration:underline;}
+.foot-logo{font-family:var(--display);font-weight:800;color:var(--white);letter-spacing:-.03em;}
+.foot-logo em{color:#1ea863;font-style:normal;}
+@media (max-width:980px){.page-grid{grid-template-columns:1fr;gap:1.5rem;}.sidebar{position:static;}.hero-spark{display:none;}}
+@media (max-width:640px){nav{padding:.8rem 1.1rem;}.nav-links a:not(.nav-cta){display:none;}.hero{padding:2.4rem 1.1rem 1.6rem;}.page-grid{padding:0 1.1rem 2rem;}}
+</style>
+</head>
+<body>
+<div id="progress" aria-hidden="true"></div>
+
+<nav aria-label="Main navigation">
+  <a href="/" class="nav-logo">Rank<em>Actions</em></a>
+  <div class="nav-links">
+    <a href="/#features">Features</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="/blog/">Blog</a>
+    <a href="https://app.rankactions.com" class="nav-cta">Try free →</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <svg class="hero-spark" viewBox="0 0 300 150" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <polyline points="0,130 45,118 90,122 135,95 180,102 225,60 270,68 300,30" fill="none" stroke="#0a7c4e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="0,130 45,118 90,122 135,95 180,102 225,60 270,68 300,30" fill="none" stroke="#c0e8d4" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" opacity=".35"/>
+  <circle cx="300" cy="30" r="6" fill="#0a7c4e"/>
+  <circle cx="225" cy="60" r="4" fill="#0a7c4e" opacity=".55"/>
+  <circle cx="135" cy="95" r="4" fill="#0a7c4e" opacity=".55"/>
+</svg>
+  <div class="hero-inner">
+    <span class="post-tag">Technical SEO</span>
+    <h1>Robots.txt Guide: Control How Search Engines Crawl Your Site</h1>
+    <p class="subtitle">Direct crawlers, protect server resources and avoid the mistakes that quietly deindex pages</p>
+    <div class="meta">
+      <span>By the RankActions team</span><span class="dot"></span><span>August 21, 2026</span><span class="dot"></span><span>6 min read</span>
+    </div>
+  </div>
+</header>
+
+<div class="page-grid">
+  <div class="main-col">
+    <div class="guide-card">
+      <div class="guide-card-label">In this guide</div>
+      <ul>
+          <li><span class="guide-dot"></span>What robots.txt does — and what it deliberately does not do</li>
+          <li><span class="guide-dot"></span>Every directive explained, with working examples</li>
+          <li><span class="guide-dot"></span>The five mistakes that cost sites their rankings</li>
+      </ul>
+    </div>
+
+    <article class="article-body">
+<p>This guide will show you exactly how to create, configure, and optimize your robots.txt file to control how search engines crawl your website. Whether you're blocking sensitive pages, managing crawl budget, or preventing duplicate content issues, understanding robots.txt is a foundational skill for anyone working on <a href="https://rankactions.com/technical-seo-guide/">technical SEO</a>.</p>
+
+<p>The robots.txt file sits at the root of your domain and serves as the first point of contact between your site and search engine crawlers. When implemented correctly, it helps you manage server resources, prevent indexing of low-value pages, and guide crawlers toward your most important content.</p>
+
+<h2>What Is a Robots.txt File and Why Does It Matter?</h2>
+
+<p>A robots.txt file is a plain text file that follows the Robots Exclusion Protocol, a standard used by websites to communicate with web crawlers and other automated bots. When a search engine crawler like Googlebot visits your site, it checks for a robots.txt file at <code>https://yourdomain.com/robots.txt</code> before crawling any pages.</p>
+
+<p>This file tells crawlers which parts of your site they can and cannot access. It's not a security measure—any determined visitor can read your robots.txt—but it is a powerful tool for managing how search engines interact with your content.</p>
+
+<h3>Common Use Cases for Robots.txt</h3>
+
+<ul>
+<li>Blocking crawlers from admin areas, login pages, and internal search results</li>
+<li>Preventing duplicate content indexing from staging or development environments</li>
+<li>Conserving crawl budget on large sites by blocking low-value directories</li>
+<li>Stopping image or PDF indexing when those files aren't intended for search visibility</li>
+<li>Directing crawlers to your XML sitemap for more efficient discovery</li>
+</ul>
+
+<h2>Robots.txt Syntax and Structure</h2>
+
+<p>Understanding robots.txt syntax is straightforward once you know the core directives. This guide breaks down each component so you can write rules confidently.</p>
+
+<h3>User-agent Directive</h3>
+
+<p>The <code>User-agent</code> line specifies which crawler the rule applies to. Use <code>User-agent: *</code> to target all crawlers, or name a specific bot like <code>User-agent: Googlebot</code> to create targeted rules.</p>
+
+<pre>User-agent: *
+Disallow: /admin/</pre>
+
+<h3>Disallow Directive</h3>
+
+<p>The <code>Disallow</code> directive tells crawlers not to access certain paths. A blank <code>Disallow:</code> allows everything; <code>Disallow: /</code> blocks the entire site.</p>
+
+<pre>User-agent: *
+Disallow: /private/
+Disallow: /temp/</pre>
+
+<h3>Allow Directive</h3>
+
+<p>The <code>Allow</code> directive overrides a <code>Disallow</code> for a more specific path. This is particularly useful when you want to block a directory but allow a subdirectory within it.</p>
+
+<pre>User-agent: *
+Disallow: /files/
+Allow: /files/public/</pre>
+
+<h3>Sitemap Directive</h3>
+
+<p>Including your XML sitemap location helps crawlers discover your pages more efficiently. This is especially valuable after you've implemented crawl restrictions.</p>
+
+<pre>Sitemap: https://yourdomain.com/sitemap.xml</pre>
+
+<div class="callout">
+            <div class="callout-title">Pro Tip</div>
+            <p>Robots.txt is case-sensitive for paths. <code>/Admin/</code> and <code>/admin/</code> are treated as different directories, so always match the exact case of your URL structure.</p>
+        </div>
+
+<h2>Robots.txt Best Practices for SEO</h2>
+
+<p>Implementing robots.txt correctly can significantly improve how search engines interact with your site. Follow these best practices to avoid common pitfalls and maximize the value of this guide.</p>
+
+<h3>1. Never Block Pages You Want Indexed</h3>
+
+<p>Blocking a URL in robots.txt prevents crawlers from accessing it, which means they can't index it. If you want to prevent indexing but still allow crawling—for example, to pass link equity—use a <code>noindex</code> meta tag instead of blocking in robots.txt.</p>
+
+<h3>2. Don't Use Robots.txt for Sensitive Content</h3>
+
+<p>Robots.txt is publicly readable, so listing sensitive directories here actually advertises their existence. For genuine security, use proper authentication and access controls, not robots.txt.</p>
+
+<h3>3. Test Before Deploying</h3>
+
+<p>Use the robots.txt testing tool in <a href="https://rankactions.com/google-search-console-tools/">Google Search Console</a> to validate your syntax and confirm that your rules work as intended. A single typo can block your entire site from search engines.</p>
+
+<h3>4. Keep It Simple</h3>
+
+<p>Overly complex robots.txt files are harder to maintain and more prone to errors. Focus on blocking only what truly needs to be restricted, and document your reasoning for future reference.</p>
+
+<h2>Common Robots.txt Mistakes to Avoid</h2>
+
+<p>Even experienced site owners occasionally make robots.txt errors that harm their search visibility. Here are the mistakes we see most often:</p>
+
+<ul>
+<li><strong>Blocking CSS or JavaScript files:</strong> Google needs to render pages fully. Blocking rendering resources can prevent proper indexing and hurt your rankings.</li>
+<li><strong>Using wildcards incorrectly:</strong> The asterisk <code>*</code> matches any sequence of characters. Misusing it can block far more than intended.</li>
+<li><strong>Forgetting trailing slashes:</strong> <code>/folder</code> and <code>/folder/</code> may behave differently depending on your server configuration.</li>
+<li><strong>Blocking entire parameter strings:</strong> Instead of blocking <code>?sessionid=</code>, consider using canonical tags or URL parameter handling in Search Console.</li>
+<li><strong>Not updating after site migrations:</strong> Old robots.txt rules can persist and block new content structures after redesigns or platform changes.</li>
+</ul>
+
+<h2>Advanced Robots.txt Techniques</h2>
+
+<p>Once you've mastered the basics, you can use robots.txt strategically to optimize crawl efficiency and protect specific resources.</p>
+
+<h3>Crawl-delay for Specific Bots</h3>
+
+<p>Some non-Google crawlers respect a <code>Crawl-delay</code> directive to slow down their request rate. This can reduce server load from aggressive bots, though Googlebot does not support this directive.</p>
+
+<pre>User-agent: SomeBot
+Crawl-delay: 10</pre>
+
+<h3>Blocking Query Parameters</h3>
+
+<p>For sites with extensive faceted navigation or tracking parameters, you can block crawlers from accessing parameterized URLs to reduce duplicate content crawling.</p>
+
+<pre>User-agent: *
+Disallow: /*?sort=
+Disallow: /*?filter=</pre>
+
+<h3>Multiple User-agent Sections</h3>
+
+<p>You can create different rules for different crawlers by using multiple user-agent blocks. This lets you give Googlebot full access while restricting less important bots.</p>
+
+<pre>User-agent: Googlebot
+Disallow:
+
+User-agent: *
+Disallow: /heavy-resources/</pre>
+
+<h2>How to Implement and Monitor Your Robots.txt File</h2>
+
+<p>Creating the file is only half the task—proper implementation and ongoing monitoring ensure your rules continue working as your site evolves.</p>
+
+<h3>Implementation Steps</h3>
+
+<ol>
+<li>Create a plain text file named exactly <code>robots.txt</code> (lowercase, no file extension variations)</li>
+<li>Add your directives following the syntax rules outlined in this guide</li>
+<li>Upload the file to your site's root directory so it's accessible at <code>https://yourdomain.com/robots.txt</code></li>
+<li>Test using Search Console's robots.txt tester tool</li>
+<li>Monitor the Coverage report (now called "Page indexing") in Search Console for any unexpected blocked URLs</li>
+</ol>
+
+<h3>Regular Maintenance</h3>
+
+<p>Review your robots.txt file quarterly or whenever you make structural changes to your site. Check for:</p>
+
+<ul>
+<li>Outdated paths that no longer exist</li>
+<li>New sections of your site that should be blocked</li>
+<li>Changes in crawler behavior or new bot user-agents</li>
+<li>Alignment with your current SEO strategy and content priorities</li>
+</ul>
+
+<div class="callout">
+            <div class="callout-title">Remember</div>
+            <p>Changes to robots.txt take effect immediately for new crawls, but already-indexed pages won't be removed from search results automatically. Use the URL removal tool in Search Console if you need faster de-indexing.</p>
+        </div>
+
+<p>Follow the practices above and you will have the knowledge to create, optimize, and maintain a robots.txt file that supports your SEO goals without creating accidental barriers to search visibility. Combined with other technical SEO fundamentals like proper site architecture and performance optimization, a well-configured robots.txt file helps search engines understand and index your content efficiently.</p>
+    </article>
+
+<section class="cta-panel">
+      <div class="cta-panel-inner">
+        <h2>Know exactly what to fix on your website each week</h2>
+        <p>RankActions connects to your Google Search Console and turns the data into a prioritised, plain-English action list — no SEO expertise required.</p>
+        <a href="https://app.rankactions.com" class="cta-button">Try RankActions free →</a>
+        <p class="cta-sub">No credit card required</p>
+      </div>
+    </section>
+  </div>
+
+    <aside class="sidebar" aria-label="More from RankActions">
+    <div class="side-label">More from RankActions</div>
+    <a class="side-card" href="/how-to-improve-google-rankings/">
+      <span class="post-tag pillar">★ Pillar guide</span>
+      <div class="side-card-title">How to Improve Google Rankings: 12 Actions That Move the Needle</div>
+    </a>
+    <a class="side-card" href="/technical-seo-guide/">
+      <span class="post-tag pillar">★ Pillar guide</span>
+      <div class="side-card-title">Technical SEO Guide: Fix the Issues Holding Your Website Back</div>
+    </a>
+    <a class="side-card" href="/canonical-tags-explained/">
+      <span class="post-tag">SEO fundamentals</span>
+      <div class="side-card-title">Canonical Tags Explained: Fix Duplicate Content the Right Way</div>
+    </a>
+    <a class="side-card" href="/xml-sitemap-guide/">
+      <span class="post-tag">Technical SEO</span>
+      <div class="side-card-title">XML Sitemap Guide: How to Create, Optimize and Submit Sitemaps</div>
+    </a>
+    <a class="side-card" href="/mobile-first-indexing/">
+      <span class="post-tag">Technical SEO</span>
+      <div class="side-card-title">Mobile First Indexing: What It Means and How to Prepare Your Site</div>
+    </a>
+    <div class="side-cta">
+      <div class="side-cta-title">Know what to fix each week</div>
+      <p>Turn your Search Console data into a prioritised action list.</p>
+      <a href="https://app.rankactions.com" class="cta-button">Try free →</a>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <span class="foot-logo">Rank<em>Actions</em></span> — AI-powered SEO for UK small businesses<br>
+  <a href="/">Home</a><a href="/blog/">Blog</a><a href="/how-to-improve-google-rankings/">Pillar guide</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a>
+</footer>
+<script>
+(function(){var b=document.getElementById('progress');if(!b)return;
+function u(){var d=document.documentElement,m=d.scrollHeight-d.clientHeight;b.style.width=(m>0?(d.scrollTop/m*100):0)+'%';}
+addEventListener('scroll',u,{passive:true});u();})();
+</script>
+</body>
+</html>
